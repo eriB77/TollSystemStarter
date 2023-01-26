@@ -8,12 +8,19 @@ public class Main {
 
         ContollerTollSystem contollerTollSystem = new ContollerTollSystem();
         ViewTollSystem viewTollSystem = new ViewTollSystem(contollerTollSystem);
-        ViewModelTollSystem viewModelTollSystem = new ViewModelTollSystem("","", 0, new Date(), new Date(), new Date(), "");
+        StorageGatewayType storageGatewayType = new StorageTollSystem();
+
+
         DisplayTollSystem presenterTollSystem = new PresenterTollSystem(viewTollSystem);
-        VignetteAPI InteractorTollSystem = new InteractorTollSystem() ;
+        VignetteAPI InteractorTollSystem = new InteractorTollSystem(presenterTollSystem, storageGatewayType);
+       // StorageTollSystem
+        //itt áthívunk az interactorba
+        contollerTollSystem.setInteractor(InteractorTollSystem);
 
         viewTollSystem.showVehicleMotorwayVignetteHistory();
-        contollerTollSystem.findVehicleByRegistrationNumber(viewModelTollSystem.registrationNumber);
+        contollerTollSystem.findVehicleByRegistrationNumber("","", "",
+                0, new Date(), new Date(), new Date());
+
 
     }
 
